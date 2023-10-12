@@ -1,0 +1,635 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\spacing{1.5}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, citecolor=blue, linkcolor=blue, urlcolor=blue}
+\usepackage{graphicx}
+\usepackage{times}
+\usepackage{appendix}
+\usepackage{tabularx}
+\graphicspath{{figures/}}
+\usepackage{pgf}
+\usepackage{pgfpages}
+\usepackage{float}
+\usepackage{titlesec}
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+\pgfpagesdeclarelayout{boxed}
+{
+	\edef\pgfpageoptionborder{0pt}
+}
+{
+	\pgfpagesphysicalpageoptions
+	{%
+		logical pages=0,%
+	}
+	\usepackage[legalpaper, landscape, margin=2in]{geometry}
+	\pgfpageslogicalpageoptions{1}
+	{
+		border code=\pgfsetlinewidth{2pt}\pgfstroke,%
+		border shrink=\pgfpageoptionborder,%
+		resized width=.95\pgfphysicalwidth,%
+		resized height=.95\pgfphysicalheight,%
+		center=\pgfpoint{.5\pgfphysicalwidth}{.5\pgfphysicalheight}%
+	}%
+}
+
+\pgfpagesuselayout{boxed}
+\begin{document}
+\ref{}
+\newpage
+\pagenumbering{roman}
+\begin{title}\\
+	\begin{center}
+		\textbf{\huge Integration of Supervisory Controller with VCU, FCU and PDU for Converting Electric Vehicle to a Hybrid Hydrogen Fuel Cell based Electric Vehicle}\\	
+		\vspace{10mm}
+		Submitted in partial fulfillment of the \\
+		\vspace{2.5mm}
+		Requirements of the degree of\\
+		\vspace{2.5mm}
+		Bachelor of Engineering\\
+		\vspace{2.5mm}
+		By\\
+		\vspace{2.5mm}
+		\begin{tabular}{l l}
+				\vspace{2.5mm}
+			\large \hspace{0.5in}\textbf{NAME} &\hspace{1.2in} \large \textbf{ROLL NO.}\\
+			\vspace{2.5mm}
+			\textbf{Mr. Siddhartha Vanjari} &\hspace{1.4in} \textbf{4020146}\\
+			\vspace{2.5mm}
+			\textbf{Mr. Aldrigh Fernandes} &\hspace{1.4in} \textbf{40201}\\
+			\vspace{2.5mm}
+			\textbf{Mr. Steve George} &\hspace{1.4in} \textbf{4020}\\
+			\vspace{2.5mm}
+			
+			\vspace{7mm}
+		\end{tabular}
+	
+	Under the guidance of\\
+	\vspace{2.5mm}
+	\large \textbf{Dr. Sushil Ramdasi and Mrs. Rashmi Kale}\\
+	\vspace{10mm}
+	\includegraphics[scale=1.1]{FCRITlogo.jpeg}\\
+	\vspace{5mm}
+	\large \textbf{Department of Electrical Engineering}\\
+	\vspace{2.5mm}
+	\large \textbf{Agnel Charities' Fr. Conceicao Rodrigues Institute of Technology, Vashi}\\
+	\vspace{2.5mm}
+	\large \textbf{University of Mumbai}\\
+	\vspace{2.5mm}
+	\large \textbf{2022-2023}
+	\end{center}
+	
+\end{title}	
+	\newpage
+	\begin{center}
+		\textbf{\huge Certificate}\\
+		\vspace{5mm}
+		\end{center}
+		This is to certify that the project entitled \textbf{“Integration of Supervisory Controller with VCU, FCU and PDU for Converting Electric Vehicle to a Hybrid Hydrogen Fuel Cell based Electric Vehicle”} is a bonafide work of \textbf{Mr. Siddhartha Vanjari (4020146), Mr. Steve George  (4020107)} submitted in partial fulfillment of the requirements of the degree of Bachelor of Engineering.\\
+		\begin{center}
+		\vspace{4cm}
+		\rule{3cm}{0.15mm}\\
+		\vspace{5mm}
+		\large \textbf{Dr. Sushil Ramdasi}\\
+		\vspace{5mm}
+		(Guide)\\
+		\vspace{6cm}
+		\begin{tabular}{l l l}
+			\vspace{5mm}
+			\rule{3cm}{0.15mm} &\hspace{2.5in} \rule{3cm}{0.15mm}\\
+			\vspace{5mm}
+		    \large \textbf{Dr. Bindu S} &\hspace{2.5in} \large \textbf{Dr. S.M. Khot}\\
+			
+			(Head of Department) &\hspace{2.5in} (Principal)\\
+			
+			\end{tabular}
+		\end{center}
+		\newpage
+		\begin{center}
+			\textbf{\huge Approval for Major Project-I}\\
+			\vspace{5mm}
+			\end{center}
+			This project report entitled \textbf{“Integration of Supervisory Controller with VCU, FCU and PDU for Converting Electric Vehicle to a Hybrid Hydrogen Fuel Cell based Electric Vehicle”} by \textbf{Mr. Siddhartha Vanjari (4020146), Mr. Steve George  (4020107)} is approved for the degree of Bachelors in  \large \textbf{“Electrical Engineering”}.
+			
+		\vspace{4cm}
+		\hspace{3.5in}\large \textbf{Examiners:}\\
+		\vspace{1cm}
+	\hspace{3.5in}	1.\rule{4cm}{.15mm}
+		
+	    \vspace{2cm}
+	\hspace{3.35in}  2.\rule{4cm}{.15mm}
+		
+		\vspace{5cm}
+		\large \textbf{Date:}
+		
+		\vspace{2cm}
+		\large \textbf{Place:}
+	
+		\newpage
+		 
+		\begin{center}
+			\textbf{\huge Declaration}\\
+			\vspace{1cm}
+			\end{center}
+			We declare this written submission for B.E. Declaration entitled \textbf{“Integration of Supervisory Controller with VCU, FCU and PDU for Converting Electric Vehicle to a Hybrid Hydrogen Fuel Cell based Electric Vehicle”} represent our ideas in our own words and where other's ideas or words have been included. We have adequately cited and referenced the original sources. We also declare that we have adhered to all principles of academic honesty and integrity and have not misrepresented or fabricated or falsified any idea/data/fact/source in our submission. We understand that any violation of the above will be cause for disciplinary action by the Institute and can also evoke penal action from the sources which have thus not been properly cited or from whom proper permission has not been taken when needed.\\
+			
+			\begin{center}
+			\begin{tabular}{l l l}
+				\vspace{5mm}
+				\rule{4cm}{0.15mm} &\hspace{2.5in} \rule{4cm}{0.15mm}\\
+				
+				\vspace{4cm}
+				\textbf{Mr. Siddhartha Vanjari} &\hspace{2.5in} \textbf{Mr. Steve George}\\
+			
+				
+			\end{tabular}
+			
+			
+		\end{center}  
+		\textbf{Date:}		   
+		\newpage
+		
+		\begin{center}
+			\textbf{\huge Acknowledgement}\\
+		\end{center}
+			\vspace{1cm}
+		The success of a project like this involving high technical expertise, patience and massive support of guides, is possible when team members work together. We take this opportunity to express our gratitude to those who have been instrumental in the successful completion of this project. We would like to thank our \textbf{Project Guide,} \textbf{Dr. Sushil Thale} for his tremendous support and efforts without whom this project would have reached nowhere. We would also like to thank our \textbf{Project Coordinator, } \textbf{Mrs. Seema Jadhav} for providing us with regular inputs about documentation and project timeline. A big thanks to our \textbf{HOD} \textbf{Dr. Bindu S} for all the encouragement given to our team. We would also like to thank our \textbf{Principal, Dr. S. M. Khot}, and our college, Fr. C. Rodrigues Institute of Technology, Vashi, for giving us the opportunity and the environment to learn and grow.
+        \vspace{0.5cm}
+        \newline{We would like to express our gratitude and special thanks to \textbf{Dr. Mini Namboothiripad, Mr. Abhishek Shiwalkar} and \textbf{Mrs. Nikita N} for their help and support.}
+        \vspace{0.5cm}
+        \newline{We would also like to thank all the staff of \large\textbf{Electrical Department} for their help.}
+			\newpage
+			\begin{center}
+				\textbf{\huge Abstract}\\
+			\end{center}
+			\vspace{1cm}
+			    Globally, there is increasing trend toward climate mitigation and increasing concern with associated issues of air pollution. In this context hydrogen offers compelling benefits. It supports a gradual transition towards lower-carbon sources of energy as it can be generated from natural gas. And the other is by nonrenewable by-products. Demand for hydrogen production technologies is rising given its potential to accelerate the transition to more sustainable forms of energy.
+Hydrogen has the potential to play a significant role in the transportation sector. It can have a wide range of transport sector applications that include local public passenger transport, heavy duty road transport and commercial vehicles, as well as in marine, rail, and possibly, even in aviation. However, challenges are many that include reducing delivery cost, increasing energy efficiency, maintaining purity, and leakages. Hence a number of important challenges must need to be overcome if it has to make a major energy contribution in the transport sector.
+Currently, over 95 percent of hydrogen is produced from hydrocarbons and about 4 percent is produced through electrolysis of water. Hydrogen is also produced as a by-product in chloralkali industries. There are several 1other methods to produce hydrogen that are at different stages of research and demonstration. These methods include hydrogen production through: Biomass and biological route) Photo electrochemical route) Thermo-chemical decomposition of water using nuclear energy or solar energy) Electrolysis using renewable energy (solar, wind)Globally, there is increasing trend toward climate mitigation and increasing concern with associated issues air pollution. In this context, hydrogen offers compelling benefits. It supports a gradual transition towards lower-carbon sources of energy as it can regenerated from natural gas. And the other is by non-renewable by-products. Demand for hydrogen production technologies is rising given its potential to accelerate the transition to more sustainable forms of-energy.
+
+
+  
+				\vspace{1cm}
+		
+			\newpage
+			\tableofcontents
+			\newpage
+			\listoffigures
+
+		\newpage
+		\pagenumbering{arabic}
+\begin{center}
+			\textbf{\huge Chapter 1}\\ \vspace{4mm}
+\\ {\huge \textbf{Introduction}}
+			\end{center}
+		\vspace{5mm}
+\section{Introduction to DC Microgrid}
+	\subsection{Background}
+		With an urgent need to reduce dependency on fossil fuels, research has been carried out extensively on electrical power generation using renewable energy sources (RES) such as solar energy, wind energy, tidal energy, and many more. However, this technology poses some challenges due to the intermittent nature and dynamic behavior of RES. Hence, integration of various RES along with a Battery backup system interfaced to a DC Microgrid can be a solution to the above-mentioned problem, which can control power sharing during unpredictable load demands using any wired or wireless communication interface.
+		A Microgrid is a small-size controllable entity interfaced with various loads, micro-sources, energy storage systems, and their control strategies. It was introduced to light up every corner of a particular country. It can operate in grid-connected as well as in island mode. 
+		\newline A 'Stand-alone Microgrid' or 'Isolated Microgrid' only operates off-the-grid and cannot be connected to a wider electric power system. Based on the operating voltage Microgrids can be classified as DC Microgrid and AC Microgrid. DC Microgrids are preferred for remote area installation where there is no grid availability. While AC Microgrids most of the time are installed in grid-connected mode. Microgrids facilitate the connection of renewable energy sources to the main grid. In Microgrid, distinct sources are connected such that they act as a single entity, which includes solar PV, wind generators, fuel cells, ultra-capacitor, batteries, etc. The main challenge in a Microgrid is that, it is a variable structure system which indicates that the loads are continuously varying at any point in time. Hence, it becomes a challenge in catering to these loads while controlling the amount of power delivered. \newline Microgrids are generally installed for campuses, military, community, etc in smaller areas as compared to a large size grid.  The loads keep on fluctuating continuously, hence the control and coordination of sources become a difficult task.
+
+		\vspace{5mm}
+		\newpage
+		\subsection{History Of Microgrid}
+A		The notion of Microgrids extends back to the birth of our business. When Thomas Edison established his Pearl Street Station in 1882, there was no standard for an energy generation-distribution system, so he designed it as he went. Edison's Manhattan Pearl Street Station, astonishingly, matched all of today's standards for what is now a Microgrid system. It was self-contained, with coal-fired steam engines driving six giant generators. His generators each generated 1,100 kW DC. Edison's electric system, like other Microgrids, was modest, with localized generating and a restricted distribution network. Because of the limitations of the DC transmission network, it only serviced a few blocks in each direction, which fulfills today's definition of a Microgrid. Surprisingly, it also came with batteries to provide energy storage.\cite{5546958}
+  %%%%%Reference to be added
+Later in 2002, Robert H Lasseter introduced the concept of a Microgrid which assumes a cluster of loads and micro sources (less than 100 kW) operating as a single controllable system that provides both power and heat to its local area. This concept provides a new paradigm for defining the operation of distributed generation. To the utility, the Microgrid can be thought of as a controlled load of the power system. For example, this Microgrid could be controlled as a single dispatchable load, which can respond in seconds to meet the needs of the transmission system for the customer, the Microgrid can be designed to meet their special needs; such as enhancing local reliability, reducing feeder losses, supporting local voltages, providing increased efficiency using waste heat, voltage sag correction, or providing uninterruptible power supply.
+
+		\subsection{Project Overview}
+The project involves the upgradation of the DC Microgrid setup consisting of four different sources. Each source has its own boost converter. Four DC-DC boost converters are utilized to connect to the 48V DC bus. Power converters were interfaced with all four sources (SPV – each 1kW, Distributed Battery Energy Storage, Fuel cell, and Ultracapacitor). DBES was connected through the bi-directional DC-DC converter to the 48V DC bus. 
+
+\newline The proposed control strategy is a combination of Multi-Agent system (MAS) control and droop control power-sharing mechanism to control the power delivered by each source using DSP controller board TMS320F28379D. The DSP board will be programmed and interfaced (according to MAS) with the power converters for their smooth operation and load sharing. In order to optimize the power delivered by a source multi-agent system control becomes an effective choice. 
+
+ \vspace{1cm}
+		\subsection{Objectives \& Scope}
+		\begin{itemize}
+		    \item	To design a system that can adopt different Microgrid sources depending on transient and loading conditions
+		    \item To implement a suitable control mechanism for optimum and economic power sharing between various sources
+		    \item To improve the stability and reliability of DC Microgrid
+		    \item Emerging area in the field of research
+		\end{itemize}
+		
+		\newpage
+\begin{center}
+			\textbf{\huge Chapter 2}\\ \vspace{4mm}
+\\ {\huge \textbf {Literature Survey}}
+			\end{center}
+		\vspace{5mm}
+\section{ DC Microgrid}
+The major components of a DC Microgrid are Energy sources, Storage, DC-DC converter, DC grid, and Control architectures. While for AC Microgrid the major components are Energy sources, Storage, DC-DC converter, Inverter, AC grid, and Control architecture. DC Microgrid has a good combination of dispatchable, non-dispatchable, inertial & non- inertial sources. It is beneficial over AC Microgrid in terms of cost, reliability & efficiency. To understand the flow of power from the grid to the consumer, a representation of the Microgrid is depicted in Fig 2.1.
+
+\begin{center}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.8]{1.jpg}
+    \caption{Pictorial Representation of Microgrid}
+    \label{fig:my_label}
+\end{figure}
+\end{center}
+\subsection{DC-DC Converter}
+\begin{itemize}
+    \item Most used DC-DC converters in DC Microgrid are Boost Converters and Bidirectional Buck-Boost Converters. As it is required that the voltage at the Microgrid side should be balanced, hence for all energy sources a power electronic converter is needed after every micro-source. For energy storage elements like batteries, a bidirectional buck-boost converter is preferred.
+    \item DC-DC Converters find their applications in renewables, smart lighting, vehicles, and many more.
+    \item The existing boost converter consists of a 500uH/50A Inductor, two 1000uF/450V capacitors (in parallel), IGBT (SKM145GB066D) & a dummy load.
+\end{itemize}
+\subsection{Control Architectures in a DC Microgrid}
+In a Microgrid, various control methods are adopted for optimum power sharing. Some of the control architectures are summarized below: 
+\subsubsection{Centralized Control}
+Centralized control is a type of Master-slave control as shown in Fig 2.2. A master controller known as Microgrid Central Controller (MGCC) is responsible for controlling the micro source controllers. In case of any power deficiency at the load side, the MGCC signals the local controllers to supply additional power to the loads. The MGCC continuously monitors the loads, sources, and storage systems through the communication link between the controllers and the MGCC. MGCC can command the controllers to shed the load in case of an overload condition. But it is a complex form of control and the main disadvantage of this type is that there is a chance of a single point of failure, which implies if the MGCC fails due to some reason, there would be no one to control the local controllers. Hence, power optimization will not be possible in this case \cite{9297748}.
+\begin{center}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{centralized.png}
+    \caption{Centralized Control of DC Microgrid}
+    \label{fig:my_label}
+\end{figure}
+\end{center}
+\subsubsection{Decentralized Control}
+The problem which occurred in centralized control is eliminated in decentralized control. There is no need for a central controller in this approach which is represented in Fig 2.3. The local controllers are equipped with intelligent mechanisms to make their own decisions. Each source has its own local controller to control the power delivered by that source. In case of any abnormality in the system, the controller can take a call at their own level to restrict a particular source from delivering a huge amount of power. For example, there are two sources (energy storage systems precisely) namely a battery and an ultracapacitor in a system, and if some fault occurs in a system, to supply that fault the local controller will command the ultracapacitor (UC) to supply the fault since the dynamic response of UC is faster than battery. Hence, the battery can be relieved from supplying the fault which could have drained it at a much faster rate \cite{6881681}.
+\begin{center}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{Decentralized-controller-for-DC-microgrids.png}
+    \caption{Decentralized Control of DC Microgrid}
+    \label{fig:my_label}
+\end{figure}
+\end{center}
+
+\subsubsection{Hierarchical Control}
+Hierarchical control includes advantages of both centralized as well as decentralized control schemes. The block diagram of hierarchical control is represented in Fig 2.4. It comprises multiple control layers namely a primary layer, a secondary layer, and a tertiary layer. The primary control layer consists of local controllers used for voltage control, current control, and power-sharing control (droop control). The secondary layer involves power quality control and power flow control. The tertiary control layer contains control at the system level that is, at the microgrid level, microgrid supervision, generation plan is accomplished in this layer. The main advantage of this control architecture is that even if control at one of the levels fails, the other control layers can continue their operation without any hindrance \cite{5546958}, \cite{9297748}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{Hierarchical control.png}
+    \caption{Block Diagram of Hierarchical Control}
+    \label{fig:my_label}
+\end{figure}
+\subsubsection{Droop Control}
+One of the simplest control methods to adopt in practice is the droop control method. In this method, the decrease in the terminal voltage of the converter with respect to time is monitored as the voltage drops due to the output impedance of the converter. The more the voltage drops, the more the reduction in terminal voltage. The controller takes the required action in order to maintain a flat bus voltage profile \cite{9297748}.
+\subsubsection{Multi-Agent System (MAS) Control}
+It is a form of decentralized control, where multiple objective-oriented agents coordinate and work together to solve complex problems. The basic flow of operation of a MAS can be observed in Fig 2.5 The agent can be any software, control algorithm, or communication protocol. These intelligent agents are designed using Java Agent Development Framework (JADE). MAS has got its own features which include scalability, modularity, flexibility, extensibility, and reliability. These agents are designed in such a way that they can adapt to any changes in the environment within no time. For example, in case of failure of any agent, the neighboring agents can be informed to act accordingly. The power shared by the sources can be redistributed by reconfiguring the system \cite{8226677}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{DC-microgrid-based-Multi-Agent-System.png}
+    \caption{Basic Operation of a MAS}
+    \label{fig:my_label}
+\end{figure}
+For improved grid performance and effective use of all the sources and storage elements, there should be coordinated control between the sources. In a DC Microgrid, control of all the DC-DC converters is necessary. By controlling the duty cycle of the IGBT, the output current & output voltage can be controlled. Depending upon the need converter can be made to operate in current control mode or voltage control mode.
+ Controlling it infers that, the power shared by each source is in an optimized manner.
+\subsection{CAN Communication}
+Controller Area Network (CAN) is a type of communication protocol implemented for the communication between controllers to take informed decisions about various conditions occurring in the system. The controllers communicate via the CAN bus. CAN bus is a broadcast type of bus, which means that each and every node can hear all the transmissions happening in the system. In the following project, CAN is used to facilitate communication between the DSP controllers so that any abnormalities in the system can be identified by other controllers and they can share the required amount of power to the load providing an uninterruptible supply. For example, let us consider two sources Solar PV and Wind energy. During the day time, Solar PV is at its peak, hence power shared by it can be maximum as compared to wind energy source whereas, during evening and night time when Solar PV output is negligible, maximum power can be shared by the wind energy source and the communication between who is to share more amount of power is implemented via the CAN communication protocol. The DSP controllers communicate with each other through CAN to feed continuous power even in case of fault conditions.
+%%%%% Image to be added
+\newpage
+\subsection{Energy Sources and Storage}
+ In this section, various sources and energy storage elements will be discussed which contribute to forming a Microgrid.
+ \subsubsection{Fuel Cell}
+ \begin{itemize}
+     \item Fuel cells are the most energy-efficient devices for extracting power from fuels. Capable of running on a variety of fuels, including hydrogen, natural gas, and biogas, fuel cells can provide clean power for applications ranging from less than a watt to multiple megawatts.
+     \item In this project, we will make use of a Proton-Exchange Membrane Fuel Cell (PEMFC). It has a total capacity of 1.2 kW and an output voltage of 24V which is boosted by its boost converter.
+ \end{itemize}
+ \subsubsection{Ultracapacitor}
+ \begin{itemize}
+     \item Ultracapacitors are energy storage devices that provide fast dynamic response to supply any transients in the system. Usually, an ultracapacitor is combined with a fuel cell in a Microgrid which makes it a dispatchable and non-inertial source. The operation of the fuel cell is limited to around 1500 hours and it incurs a high investment cost. Hence, to optimize its operation, an ultracapacitor becomes an essential component.
+ \end{itemize}
+ \subsubsection{Solar PV}
+\begin{itemize}
+    \item The most popular renewable energy source is Solar PV. As compared to other sources the cost of solar PV is lesser. It is a highly reliable, clean, and efficient source. It is a non-dispatchable and non-inertial source.
+\end{itemize}
+\subsubsection{Battery}
+\begin{itemize}
+    \item Energy storage systems like batteries and ultracapacitors are introduced to stabilize the system. The excess energy from the source to load or vice versa is used to charge the Battery Energy Storage Systems (BESS).
+    \item Moreover, it is a dispatchable and non-inertial source. Hence, the continuous power supply is assured.
+\end{itemize}
+In a Microgrid, there are various scenarios under which it operates, for example, the above-mentioned sources are employed in forming a DC Microgrid. So, considering the reliability and performance of the sources following cases can be possible:\\[1mm]
+\textbf{Case I: Solar PV insolation abundant, Battery SOC low}\\
+During day time when solar radiation is at its peak, the majority of the loads can be supplied by Solar PV, relieving the fuel cell from supplying at the time and in turn charging the battery.\\[1mm]
+\textbf{Case II: Solar PV insolation unavailable, Battery SOC full, fuel is available}\\
+From evening to night time, solar radiation becomes weak, hence a greater portion of the load can be supplied by the energy storage element like Battery which is fully charged from the morning. Moreover, a fuel cell can also be used (if required) in an optimized way to feed the loads parallelly with the battery.\\[1mm]
+\textbf{Case III: Ultracapacitor charged, Battery SOC half}\\
+Considering heavy transients occurring in the system, to supply these transients a non-inertial source is required which has got a fast response. Ultracapacitors are such energy storage components that can provide a fast dynamic response and relieve the other sources from overloading.
+
+\newpage
+\begin{center}
+			\textbf{\huge Chapter 3}\\ \vspace{4mm}
+\\{\huge \textbf{Simulation of DC Microgrid Setup}}
+			\end{center}
+			\section{Simulation of DC Microgrid Setup}
+	 \subsection{Fuel Cell IV Curve}
+	 
+The power density curve is constructed from the i-V curve by multiplying the voltage at each point on the i-V curve by the corresponding current density. Fuel cell power density increases with increasing current density, reaches a maximum, and then falls at still higher current densities.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{image.png}
+    \caption{Fuel Cell IV Curve}
+    \label{fig:my_label}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[scale=0.5]{image2.png}
+    \caption{Stack Power and Stack Voltage}
+    \label{fig:my_label}
+\end{figure}\\
+
+\
+\subsection{Fuel Cell Electric Plant }
+\begin{figure}[H]
+    \includegraphics[scale=0.5]{image3.png}
+    \caption{Fuel Cell Thermal Plant}
+    \label{fig:my_label}
+\end{figure}\\
+
+The fuel-cell DC/DC boost converter plays a crucial role in the operation of \href{https://www.infineon.com/cms/en/applications/automotive/fuel-cell-ev-drivetrain/}{fuel-cell electric vehicle drivetrain systems}. A FC electric drivetrain system comprises of at least one DC/DC boost converter, which interlinks the fuel-cell stack with the DC link voltage of the \href{https://www.infineon.com/cms/en/applications/automotive/electric-drive-train/traction-inverter/}{traction inverter} and the high-voltage traction battery. The fuel-cell DC/DC converter enables the energy flow between these two electrical subnets over a wide voltage range.
+
+At Infineon, we understand that all sub-systems of fuel-cell electric vehicles need to maintain the highest possible levels of efficiency and reliability while staying cost-effective. This, in combination with the need to keep DC/DC converter dimensions to an absolute minimum, are just some of the challenges facing system designers today. That is why Infineon offers a broad range of chip-set solutions intended to optimize and support the design of \href{https://www.infineon.com/cms/en/product/power/dc-dc-converters/}{DC/DC converters} in fuel-cell technology.
+
+
+\\
+%\newpage
+
+     \vspace{10mm}
+\		\newpage
+\begin{center}
+			\textbf{\huge Chapter 4}\\ \vspace{4mm}
+\\ {\huge \textbf{Hardware Testing}}
+			\end{center}
+		\vspace{5mm}
+\section{Hardware Testing}
+      \subsection{Setup of Boost Converter}
+      The Boost Converter shown in Fig 4.1.1 comprises of components namely,\\
+      \begin{figure}[H]
+          \centering
+          \includegraphics[scale=1.0]{setup.png}
+          \caption{Setup of Boost Converter}
+          \label{fig:my_label}
+      \end{figure}
+      \newline \textbf{1. DSP Controller Board}\\
+      The DSP board used for this purpose is manufactured by Texas Instruments of the Delfino family 2837xD (Model no.- TMS320F28379D) as shown in Fig 4.2 It has a 32-bit dual-core architecture. It contains several features:\\
+      \begin{itemize}
+          \item Max clock frequency of 200 MHz
+          \item Communication modules which include Controller Area Network (CAN), Serial Communication Interfaces (SCI/UART) & two I2C interfaces.
+          \item Four Analog-to-Digital Converters (ADCs) in 16-bit mode and 12-bit mode.
+          \item Enhanced control peripherals, which include 24 PWM channels, 16 High-Resolution PWM channels & six enhanced capture modules.
+          \item Used for precision control like industrial motor drives, solar inverters etc.
+          \item In this proposed work, one DSP is sufficient to control the operation of four converters. The code must be modified accordingly for implementing PI controllers for closed-loop operation.
+      \end{itemize}
+      \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.5]{DSP.jpeg}
+          \caption{Texas Instruments DSP Launchpad (TMS320F28379D)}
+          \label{fig:my_label}
+      \end{figure}
+      \newline \textbf{2. Gate driver circuit}\\
+      The Semikron's SKYPER 32 gate driver shown in Fig 4.3 is an interface between the IGBT and the converter manufactured by Semikron. It is used to amplify the pulses coming from the level shifter to the IGBT and comprises the enhanced protection circuit. The gate driver circuit supplies positive 15V to turn on IGBT and -7V to effectively turn off the IGBT.
+      \endline
+      \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.4]{gate driver.jpg}
+          \caption{Semikron SKYPER 32R Gate Driver Circuit}
+          \label{fig:my_label}
+      \end{figure}
+      \newline \textbf{3. IGBT}\\
+      The SKM 145GB066D IGBT as observed in Fig 4.4 manufactured by Semikron is used for high-frequency applications such as inverter drives, UPS, etc. The IGBT is operated on PWM pulses of 15 KHz for the existing boost converters.
+      \endline
+      \begin{figure}[H]
+         \centering \includegraphics[scale=0.3]{igbt.jpg}
+          \caption{Semikron IGBT Module}
+          \label{fig:my_label}
+      \end{figure}
+      %\newpage
+      \newline\textbf{4. Capacitors}\\
+      A 2000uF capacitor is connected across the output terminal of the boost converter for filtration purposes and to make output voltage ripple free also one dummy load is permanently connected across it because we cannot operate the boost converter at no load. There are two capacitors connected in parallel. Each capacitor is rated at 1000uF, 450V. Hence the total of 2000uF capacitance at 450V is connected to the boost converter. \\
+      \endline
+      
+      \newline\textbf{5.	Inductor}\\
+      When the switch is closed, the Inductor stores energy, and when the switch is open it acts along with the supply and boosts the output voltage. The value of the inductor in the boost converter is 500uH. The inductor is designed to carry 50A current. \\
+      \endline
+      
+      \newline\textbf{6. Voltage level shifter}\\
+      Since the gate terminal of the IGBT requires PWM pulses at 15V for driving the IGBT, but the maximum output voltage from DSP is 3.3V, hence we need a Voltage level shifter as shown in Fig 4.5 to amplify the 3.3V to 15V. The 5V input supply and the 15V auxiliary supply is provided by the portable power supply. One of the terminals is used for supplying the pulses from DSP. The IC used for this purpose is IC7407 open collector buffer IC. The output from DSP is 3.3V at 15kHz and the output from the voltage level shifter 15V obtained will be at 15kHz.
+      \endline
+      
+      \begin{figure}[H]
+          \centering
+          \includegraphics[scale=1.0]{level shifter.jpg}
+          \caption{Level Shifter}
+          \label{fig:my_label}
+      \end{figure}
+      
+      \newline\textbf{7.	Attenuator circuit}\\
+      Attenuator is a two-port electronic device designed using resistors to diminish a signal. Resistors are arranged as a voltage divider network as seen in Fig 4.6.
+      It is connected in series between a signal source and a load circuit on the signal path. In the DC microgrid, an attenuator has been used to convert 48V DC to 3.3V DC which is required by the DSP board. It is a type of feedback provided to DSP for monitoring grid voltage. \\
+      \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.18]{attenuator circuit.jpg}
+          \caption{Attenuator Circuit}
+          \label{fig:my_label}
+      \end{figure}
+      \newpage
+      \newline\textbf{8. MCB}\\
+      A Miniature Circuit breaker is used for each source as shown in Fig 4.7. This MCB acts as a breaker between each source and Boost DC–DC converter. A 32A MCB is used for protecting the source if there is any fault on the Boost Converter. Also, there is one MCB that connects DC Microgrid to load, this MCB is always closed so that boost converters are always on some load. The maximum current carrying capacity of this MCB is 63A.
+      \begin{figure}[H]
+          \centering
+          \includegraphics[scale=1.0]{mcb.jpg}
+          \caption{Miniature Circuit Breaker}
+          \label{fig:my_label}
+      \end{figure}\\
+      The components described above are of one converter, the other converters have the same components comprising a total capacity of 4kW. The complete setup of the DC Microgrid is depicted below.
+      \subsection{Setup of DC Microgrid}
+      \begin{figure}[H]
+      \centering
+      \includegraphics[scale=0.1]{MG_setup.png}
+      \caption{DC Microgrid setup}
+      \label{fig:my_label}
+      \end{figure}\\
+      Fig 4.8 shows the setup of the complete DC Microgrid. The converters are configured on the 48V DC bus. Each converter has got its own controller, which controls the operation of the boost converter.  
+      \subsection{PWM Generation using DSP TMS320F28379D Controller}
+      The DSP controller was programmed in Code Composer Studio developed by Texas Instruments. For the purpose of testing, the epwm example code was uploaded in the DSP.
+      \begin{figure}[H]
+          \centering
+          \includegraphics[scale=1.0]{pwm.jpg}
+          \caption{PWM generation using TMS320F28379D}
+          \label{fig:my_label}
+      \end{figure}\\
+      Fig 4.9 shows the connection of DSO probes after the code was uploaded in the DSP. The positive probe was connected to pin no. 39 of DSP. It can be connected to any of the pins between 38, 39 & 40 since the pulses are generated on each one of them. The negative probe was connected to GND.\\
+      \begin{figure}[H]
+          \centering
+          \includegraphics[scale=1.7]{dso.jpg}
+          \caption{PWM pulses on DSO}
+          \label{fig:my_label}
+      \end{figure}\\
+         The pulses of 15kHz can be observed in Fig 4.10 These pulses are meant for controlling the switches (duty cycle) of the boost converters. The maximum possible voltage of 3.3V can be obtained from DSP. The frequency of the PWM pulses can be changed by changing the TBPRD register value. As our Boost converter is designed for 15kHz we have generated 15kHz PWM pulses. 
+
+         \subsection{CAN communication testing on Mixed Signal Oscilloscope}
+         Controller Area Network (CAN) communication pulses were generated between two DSPs. Communication is established between DSPs to ensure optimum power sharing between the sources. For the purpose of testing numeric data was transmitted from one DSP to another DSP. In a large-scale microgrid, the loads are continuously varying, and a continuous power supply is to be ensured. The DSPs need to have a communication link between them to understand the status of other sources. If one of the sources is unable to deliver the required power, it can be delivered by the remaining sources. The local controllers must communicate with each other in order to supply the required load optimally.
+
+         \begin{figure}[H]
+          \centering
+          \includegraphics[scale=1.0]{can.jpg}
+          \caption{CAN Communication pulses on MSO}
+          \label{fig:my_label}
+      \end{figure}\\
+      A numeric data '1134678' was transmitted to the second DSP. The pulses are observed in Fig 4.11 which indicates that the second DSP has received the data. There is a 29-bit identifier that contains two recessive bits (SRR \& RTR).
+         \newpage
+         \begin{center}
+			\textbf{\huge Chapter 5}\\ \vspace{4mm}
+\\{\huge \textbf{Results}}
+			\end{center}
+\section{Results}
+\newline \subsection{Open Loop Control of Boost Converter}
+\newline To verify the operation of the boost converter an open loop control was carried out for one converter. After the successful operation of one converter, all four converters were tested in open loop. For an input supply of 24V, the output obtained was 48V.
+\begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.6]{input supply.jpg}
+          \caption{Input supply to boost converter}
+      \end{figure}\\
+ 
+      \begin{figure}[H]
+          \centering
+          \includegraphics[scale=2.5]{electronic load.jpg}
+          \caption{Electronic Load}
+      \end{figure}\\
+      
+      The input of 24V to the boost converter was provided with the help of a portable power supply as shown in Fig 5.2 The expected output voltage of 48V was obtained as shown in Fig 5.1 The connected resistive load was 12.70Ω. Current drawn by the load was 3.780A.\\[0.1cm]
+      As shown in Fig 5.2 the input current of the boost converter is around 10A at 22.9V which is almost double the output side current or load current.\\[0.1cm]
+      As the operation of the boost converter is in the open loop so, with a change in input voltage the output voltage was also changing in proportional to the change in input voltage. Similarly, the same effect was observed with the input and output current of the boost converter.\\[0.1cm]
+      The PWM pulses of the 58 percent duty cycle were generated from the DSP board and fed to the voltage shifter of the converter to amplify the voltage as required for supplying the IGBT. First, these PWM pulses generated by DSP were seen on DSO and then it was given to the gate driver, finally, the PWM pulses given to the gate of IGBT were also seen on DSO.\\
+      \begin{figure}[H]
+          \centering
+          \includegraphics[scale=1.0]{auxiliary supply.jpg}
+          \caption{Auxiliary supply}
+          \label{fig:my_label}
+      \end{figure}\\
+      An additional 15V auxiliary supply was provided to the gate driver circuit as shown in Fig 5.3
+      
+      \newpage
+      \newline \subsection{Closed Loop Control of Boost Converter}
+      \newline After the successful implementation of open-loop control of the boost converter, one of the boost converters was operated in closed-loop voltage and current control. PI controller was implemented through the DSP TMS320F28379D to control the output voltage and the inductor current. The results of the same are attached below.
+      \newline \subsubsection{Voltage Mode Control of Boost Converter}
+      The converter is first operated in voltage control mode using the PI controller, which can be observed from Fig 5.4 the load voltage is maintained constant at around 48V even after varying the input voltage and loading conditions.
+      \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.42]{Load voltage.jpg}
+          \caption{Output Voltage of boost converter}
+          \label{fig:my_label}
+      \end{figure}\\
+      From Fig 5.5 it can be observed that as the input voltage is varied from 24V to 19V the duty cycle of the switch is increased which can be seen on the DSO. The PI controller takes corrective action to maintain the voltage up to the reference value of 48V. 
+      \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.18]{Input voltage.jpg}
+          \caption{Input Voltage of boost converter}
+          \label{fig:my_label}
+      \end{figure}
+      The parameters which are controlled from the CCS software are displayed on the watch window which can be observed in Fig 5.6. The 'Voref' variable depicts the reference value set as an input to the PI controller. 'Voact' is the actual voltage sensed by the ADC of the DSP controller which is to be controlled.
+      \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.7]{CCS voltage window.png}
+          \caption{Watch Window of CCS Software (Voltage)}
+          \label{fig:my_label}
+      \end{figure}
+      %\newpage
+      The closed loop variable has been set to 1 and the Voltage loop flag has been set to 0 which implies that the converter is operated in Voltage Control Mode.
+      \subsubsection{Current Mode Control of Boost Converter}
+      The same converter was tested in CCM as well, the results of which are shown below.
+      %%%%% IR Filter to be added
+      \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.7]{current window.png}
+          \caption{Watch Window of CCS Software (Current)}
+          \label{fig:my_label}
+      \end{figure}
+      The watch window of the CCS software when the current loop is operated is shown in Fig 5.7. The current reference is set as 2A by the variable 'Ioref'. The controlled current is depicted by the variable 'Ioactfilter'. It can be observed that the actual value is almost equal to the reference value. The errors and noises in the signal were eliminated using a Digital IR Filter. It is a DC filter. In Fig 5.7 the actual current sensed without a filter can be observed, it has been defined by the variable 'Ioact'. The difference between using a filter versus without a filter can be clearly observed.
+     
+      \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.36]{input current.jpg}
+          \caption{Input Current of boost converter}
+          \label{fig:my_label}
+      \end{figure}
+      The current at the input side is close to 2A as seen in Fig 5.8 which indicates that the converter is operating in CCM. The varied duty cycle can be observed on the DSO.
+    \newpage
+     \subsection{Paralleling of two boost converters}
+      Further, two of the converters were operated in parallel maintaining one of the converters in Voltage Control Mode (VCM) and the other converter in Current Control Mode (CCM). From the results, it was observed that the current delivered by the voltage source was shared by the converter operating in CCM. After varying the input voltage or the load, the voltage was maintained at 48V by the voltage source, and the current demand was satisfied by the current source. The procedure to start the converters is depicted through the following steps:\\
+      
+      \textbf{Step 1: Converter I operated in VCM}\\
+      Input Voltage of Converter I= 24V\\Current Supplied by Converter I= 1.71A\\ Converter I (VCM) alone supplying a load of 150 \Omega
+
+      \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.8]{pwm_parallel.jpg}
+          \caption{PWM Pulses (Yellow) generated for Converter-I}
+          \label{fig:my_label}
+      \end{figure}
+      Fig 5.9 depicts the PWM pulses generated for Converter-I. It illustrates that switch (IGBT) is operating at a duty cycle of 50\%. Converter-I was operated in Voltage Control Mode to build up the bus voltage up to 48V. 
+      \newpage
+      This converter will not supply a high amount of current to the load. The current of Converter-I will be shared by the second converter.
+
+      \begin{figure}[H]
+          \centering
+          \includegraphics[scale=0.8]{op voltage.jpg}
+          \caption{Output Voltage of Converter-I}
+          \label{fig:my_label}
+      \end{figure}
+      The output voltage is maintained at 48V by the voltage source as seen in Fig 5.10 and the output power delivered to the load is 15W. Now, operating the second converter in  current control mode to share the required amount of current to the load.\\
+      
+      \textbf{Step 2: Converter I operated in CCM – Power Sharing between two converters}\\
+      Input Voltage of Converter I= 24V,  Vref=48V\\
+      Current Supplied by Converter I= 0.72A, Iref=1.2A\\  
+      Input Voltage of Converter II= 24V\\
+      Current Supplied by Converter I= 1.21A\\
+      Converter I(VCM) and Converter II(CCM) both supplying a load of 150 \Omega 
+
+     \begin{figure}[H]
+          \centering
+          \includegraphics[scale=1.0]{ip voltage_vcm.jpg}
+          \caption{Input Voltage for Converter-I}
+          \label{fig:my_label}
+      \end{figure}
+      As it can be seen from Fig 5.11, the input voltage of converter-I is set at 24V and the current drawn from the same is 0.71A, from which it is understood that the current drawn from the voltage source is minimal.
+      
+      \begin{figure}[H]
+      \centering
+      \includegraphics[scale=0.9]{ip voltage_ccm.jpg}
+      \caption{Input Voltage for Converter-II}
+      \label{fig:my_label}
+      \end{figure}
+      Fig 5.12 depicts the input voltage of Converter-II. The following converter is operated in current control mode which can also be understood from the input current value. The input current value is around 1.21A, which means that converter II has delivered converter I's share for the same value of load resistance.
+
+      The converters are tested under reduced input voltage conditions, increased input voltage conditions, and various loading conditions which are summarized in the following table.
+      \begin{center}
+      \begin{table}[ht]
+      \caption{\label{tab: }\Output Voltage with variable input voltage and load}\vspace{0.2cm}
+      \centering\begin{tabular}{ | c | c | c | c | } 
+      \hline
+      Sr no. & Input Voltage(V) & Load(\Omega) & Output Voltage(V) \\ 
+      \hline
+      1. & 24 & 100 & 49.5 \\ 
+      \hline
+      2. & 19 & 100 & 49.4 \\ 
+      \hline
+      3. & 29.3 & 150 & 49.2\\
+      \hline
+      \end{tabular}
+      \end{table}
+      \end{center}
+      From Table 5.1, it can be observed that the output voltage remains almost constant even after varying input voltage and load resistance values. This indicates that the PI controller is operating accurately to track the reference values.\\[0.1cm] In a small-scale microgrid such as the one in this project, the error in output voltage is allowable up to 3\% whereas in a large-scale microgrid ideally there should be no error but in a practical scenario it should be less than 1\%.\\[0.1cm]In a large-scale microgrid, whenever the source voltage varies or fluctuates the power demanded by the load will be fulfilled by the respective controller by specific power-sharing algorithms such as droop control, economic dispatch control, etc.
+     %%%% Results to be added
+
+    \newpage
+    
+\begin{center}
+			\textbf{\huge Chapter 6}\\ \vspace{4mm}
+\\{\huge \textbf{Conclusion}}
+			\end{center}
+\section{Conclusion}
+In the initial stage of the project, a brief understanding of the system was carried out. The simulation of the DC Microgrid provided a better idea about the dynamic response of the system. Further, we introduced ourselves to the DSP controller board and the programming software i.e., code composer studio for coding the DSP launchpad board. Using the DSP board, the converter was operated in open loop as well as in closed loop. CAN communication was established between the DSPs to efficiently understand the status of the respective sources.  Advanced architectures like multi-agent system control, droop control, and hierarchical control for Microgrids, are capable of solving complex problems in real-time and providing high reliability. A decentralized control strategy was implemented so that the controllers can take informed decisions. \\ [0.1cm]To date, the Microgrid concept is under research and development. Microgrids are surely a better choice than conventional grids to electrify each and every corner of the country.
+      
+\newpage
+
+\bibliographystyle{plain}
+ \bibliography{myref}
+\end{document}
